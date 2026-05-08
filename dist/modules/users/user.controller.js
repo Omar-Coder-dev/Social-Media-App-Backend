@@ -3,10 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const user_service_1 = require("./user.service");
 const success_res_1 = require("../../utils/success.res");
-const validation_middleware_1 = require("../../middlewares/validation.middleware");
-const user_validation_1 = require("./user.validation");
+// import { validation } from '../../middlewares/validation.middleware'
+// import { signupSchema } from './user.validation'
+const error_handle_1 = require("../../utils/errorHandle/error.handle");
 const router = (0, express_1.Router)();
-router.post("/signup", (0, validation_middleware_1.validation)(user_validation_1.signupSchema), (req, res) => {
+router.post("/signup", (req, res) => {
+    throw new error_handle_1.BadRequestException("this is bad request");
     const { data } = (0, user_service_1.signup)(req.body);
     return (0, success_res_1.successRes)({ res, data });
 });

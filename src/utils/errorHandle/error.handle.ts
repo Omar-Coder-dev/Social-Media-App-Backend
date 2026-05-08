@@ -1,13 +1,14 @@
+import { $ZodIssue } from "zod/v4/core";
 import { IAppError } from "../types/error";
 
 export class AppError extends Error implements IAppError {
     constructor(
         message: string,
         public statusCode: number = 500,
+        public validationError?: $ZodIssue[] | undefined,
         options?: ErrorOptions
     ) {
         super(message, options);
-        Object.setPrototypeOf(this, AppError.prototype);
     }
 }
 
@@ -36,8 +37,8 @@ export class ForbiddenException extends AppError {
 }
 
 export class ValidationErrorException extends AppError {
-    constructor(message?: string[]){
-        super (message as unknown as string || "Validation error", 422);
+    constructor(validationErrors:$ZodIssue[]){
+        super ("Validation Error" , 422 , validationErrors);
     }
 }
 

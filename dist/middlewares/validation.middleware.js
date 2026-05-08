@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validation = void 0;
+const error_handle_1 = require("../utils/errorHandle/error.handle");
 const validation = (schema) => {
     return (req, res, next) => {
         const issues = [];
@@ -14,7 +15,8 @@ const validation = (schema) => {
             }
         });
         if (issues.length) {
-            return res.status(400).json({ errMsg: "validation Error", issues });
+            throw new error_handle_1.ValidationErrorException(issues);
+            // return res.status(400).json({ errMsg: "validation Error", issues })
         }
         return next();
     };

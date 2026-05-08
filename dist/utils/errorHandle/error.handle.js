@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidationErrorException = exports.ForbiddenException = exports.UnauthorizedException = exports.BadRequestException = exports.NotFoundException = exports.AppError = void 0;
 class AppError extends Error {
     statusCode;
-    constructor(message, statusCode = 500, options) {
+    validationError;
+    constructor(message, statusCode = 500, validationError, options) {
         super(message, options);
         this.statusCode = statusCode;
-        Object.setPrototypeOf(this, AppError.prototype);
+        this.validationError = validationError;
     }
 }
 exports.AppError = AppError;
@@ -35,8 +36,8 @@ class ForbiddenException extends AppError {
 }
 exports.ForbiddenException = ForbiddenException;
 class ValidationErrorException extends AppError {
-    constructor(message) {
-        super(message || "Validation error", 422);
+    constructor(validationErrors) {
+        super("Validation Error", 422, validationErrors);
     }
 }
 exports.ValidationErrorException = ValidationErrorException;
