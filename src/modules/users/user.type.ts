@@ -8,6 +8,10 @@ export enum ProviderEnum {
     system,
     google,
 }
+export enum RoleEnum {
+    user,
+    admin
+}
 
 
 export type HUser = HydratedDocument<IUser>
@@ -23,6 +27,7 @@ export interface IUser {
     changedCredentialsAt: Date
     isDeleted: boolean
     isProvier: ProviderEnum
+    role: RoleEnum
 }
 
 
@@ -31,6 +36,18 @@ export interface signupDTO {
     name:string 
     email:string
     password:string
-    confirmPassword:string
+    confirmPassword:string 
+    age:number
+    gender: GenderEnum
+    phone:string
+}
 
+export type confirmEmailDTO = {
+    email: string
+    otp: number
+}
+
+export type loginDTO = {
+    email: string
+    password: string
 }

@@ -1,4 +1,4 @@
-export const generateHtml = (subject: string, name: string, code: string | number): string => {
+export const generateHtml = (subject: string, name: string, otp: string | number): string => {
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +78,7 @@ export const generateHtml = (subject: string, name: string, code: string | numbe
             <div class="subject-badge">Subject: ${subject}</div>
             <div class="greeting">Hi ${name},</div>
             <p>Please use the verification code below to confirm your request:</p>
-            <div class="otp-code">${code}</div>
+            <div class="otp-code">${otp}</div>
             <p class="warning">⚠️ This code is valid for only 5 minutes.</p>
         </div>
         <div class="footer">

@@ -6,6 +6,12 @@ class DBRepo {
     constructor(model) {
         this.model = model;
     }
+    async create(data) {
+        return this.model.create(data);
+    }
+    async createMany(data) {
+        return this.model.create(data);
+    }
     async findById(id, projection, options) {
         const doc = await this.model.findById(id, projection, options);
         return doc;
@@ -17,17 +23,6 @@ class DBRepo {
     async findOne(filter, projection, options) {
         const doc = await this.model.findOne(filter, projection, options);
         return doc;
-    }
-    async create(data) {
-        let docs;
-        if (Array.isArray(data)) {
-            docs = await this.model.create(data);
-            return docs;
-        }
-        else {
-            docs = await this.model.create(data);
-            return docs;
-        }
     }
     async updateOne(filter, update, options) {
         const result = await this.model.updateOne(filter, update, options);

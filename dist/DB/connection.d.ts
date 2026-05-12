@@ -1,5 +1,5 @@
 export declare const DBconnection: () => Promise<void>;
-export declare const client: import("@redis/client").RedisClientType<{
+export declare const RedisClient: import("@redis/client").RedisClientType<{
     json: {
         ARRAPPEND: {
             readonly IS_READ_ONLY: false;

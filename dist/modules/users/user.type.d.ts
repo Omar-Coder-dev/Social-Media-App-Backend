@@ -7,6 +7,10 @@ export declare enum ProviderEnum {
     system = 0,
     google = 1
 }
+export declare enum RoleEnum {
+    user = 0,
+    admin = 1
+}
 export type HUser = HydratedDocument<IUser>;
 export interface IUser {
     name: string;
@@ -19,11 +23,23 @@ export interface IUser {
     changedCredentialsAt: Date;
     isDeleted: boolean;
     isProvier: ProviderEnum;
+    role: RoleEnum;
 }
 export interface signupDTO {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
+    age: number;
+    gender: GenderEnum;
+    phone: string;
 }
+export type confirmEmailDTO = {
+    email: string;
+    otp: number;
+};
+export type loginDTO = {
+    email: string;
+    password: string;
+};
 //# sourceMappingURL=user.type.d.ts.map

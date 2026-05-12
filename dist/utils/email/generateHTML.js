@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateHtml = void 0;
-const generateHtml = (subject, name, code) => {
+const generateHtml = (subject, name, otp) => {
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +81,7 @@ const generateHtml = (subject, name, code) => {
             <div class="subject-badge">Subject: ${subject}</div>
             <div class="greeting">Hi ${name},</div>
             <p>Please use the verification code below to confirm your request:</p>
-            <div class="otp-code">${code}</div>
+            <div class="otp-code">${otp}</div>
             <p class="warning">⚠️ This code is valid for only 5 minutes.</p>
         </div>
         <div class="footer">

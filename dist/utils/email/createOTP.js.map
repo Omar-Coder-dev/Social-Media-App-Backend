@@ -1,0 +1,1 @@
+{"version":3,"file":"createOTP.js","sourceRoot":"","sources":["../../../src/utils/email/createOTP.ts"],"names":[],"mappings":";;;;;;AACA,oDAA2B;AAEpB,MAAM,SAAS,GAAG,GAAW,EAAE;IAClC,OAAO,gBAAM,CAAC,SAAS,CAAC,MAAM,EAAC,MAAM,CAAC,CAAC;AAC3C,CAAC,CAAA;AAFY,QAAA,SAAS,aAErB"}

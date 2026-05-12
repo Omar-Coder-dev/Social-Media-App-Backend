@@ -1,5 +1,6 @@
-export declare const sendEmail: ({ to, subject, html }: {
+export declare const sendEmail: ({ to, otp, subject, html }: {
     to: string;
+    otp: string;
     subject: string;
     html: string;
 }) => Promise<void>;

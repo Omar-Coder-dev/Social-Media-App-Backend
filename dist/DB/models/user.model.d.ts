@@ -1,6 +1,7 @@
 import { IUser } from "../../modules/users/user.type";
-declare const userModel: import("mongoose").Model<IUser, {}, {}, {}, import("mongoose").Document<unknown, {}, IUser, {}, import("mongoose").DefaultSchemaOptions> & IUser & {
-    _id: import("mongoose").Types.ObjectId;
+import mongoose from "mongoose";
+declare const userModel: mongoose.Model<IUser, {}, {}, {}, mongoose.Document<unknown, {}, IUser, {}, mongoose.DefaultSchemaOptions> & IUser & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
 } & {

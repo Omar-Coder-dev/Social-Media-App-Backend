@@ -1,18 +1,20 @@
 import express, { Express, NextFunction, Request, Response } from "express";
-
+import postRouter, { routes as postRoutes } from "./modules/posts/post.controller";
+import notificationRouter, { routes as notificationRoutes } from "./modules/notifications/notification.controller";
 import { PORT } from "./config";
 import { NotFoundException } from "./utils/errorHandle/error.handle";
-import userRouter from "./modules/users/user.controller";
+import userRouter, {routes as userRoutes } from "./modules/users/user.controller";
 import {DBconnection, testRedisConnection} from "./DB/connection";
 import { IAppError } from "./utils/types/error";
-// import { email } from "./utils/email/emailEvents";
-// import userModel from "./DB/models/user.model";
-// import { GenderEnum } from "./modules/users/user.type";
+import storyRouter from "./modules/story/story.controller";
 export const app: Express = express();
 
 export const bootstrap = async () => {
   app.use(express.json());
-  app.use("/users", userRouter);
+  app.use(userRoutes.base, userRouter);
+  app.use(postRoutes.base, postRouter);            
+  app.use(notificationRoutes.base, notificationRouter);
+  app.use("/stories", storyRouter);  
   await DBconnection();
   await testRedisConnection();
 

@@ -7,4 +7,6 @@ export declare const EMAIL_USER: string | undefined;
 export declare const EMAIL_PASSWORD: string | undefined;
 export declare const HOST: string | undefined;
 export declare const EMAIL_PORT: string | undefined;
+export declare const ACCESS_TOKEN_SIGNATURE: string | undefined;
+export declare const REFRESH_TOKEN_SIGNATURE: string | undefined;
 //# sourceMappingURL=config.d.ts.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"boostrap.d.ts","sourceRoot":"","sources":["../src/boostrap.ts"],"names":[],"mappings":"AAAA,OAAgB,EAAE,OAAO,EAAmC,MAAM,SAAS,CAAC;AAU5E,eAAO,MAAM,GAAG,EAAE,OAAmB,CAAC;AAEtC,eAAO,MAAM,SAAS,qBAsBrB,CAAC"}
+{"version":3,"file":"boostrap.d.ts","sourceRoot":"","sources":["../src/boostrap.ts"],"names":[],"mappings":"AAAA,OAAgB,EAAE,OAAO,EAAmC,MAAM,SAAS,CAAC;AAS5E,eAAO,MAAM,GAAG,EAAE,OAAmB,CAAC;AAEtC,eAAO,MAAM,SAAS,qBAyBrB,CAAC"}

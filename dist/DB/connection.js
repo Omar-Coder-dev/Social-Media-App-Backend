@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.testRedisConnection = exports.client = exports.DBconnection = void 0;
+exports.testRedisConnection = exports.RedisClient = exports.DBconnection = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const redis_1 = require("redis");
 const config_1 = require("../config");
@@ -17,12 +17,12 @@ const DBconnection = async () => {
     }
 };
 exports.DBconnection = DBconnection;
-exports.client = (0, redis_1.createClient)({
+exports.RedisClient = (0, redis_1.createClient)({
     url: "redis://localhost:6379",
     database: 3
 });
 const testRedisConnection = async () => {
-    exports.client.connect().then(() => {
+    exports.RedisClient.connect().then(() => {
         console.log("Redis connected successfully");
     }).catch((error) => {
         console.error("Error connecting to Redis:", error);

@@ -12,13 +12,13 @@ export const DBconnection = async() =>{
 }
 
 
-export const client = createClient({
+export const RedisClient = createClient({
     url: "redis://localhost:6379",
     database: 3
 })
 
 export const testRedisConnection = async () => {
-    client.connect().then(() => {
+    RedisClient.connect().then(() => {
         console.log("Redis connected successfully")
     }).catch((error) => {
         console.error("Error connecting to Redis:", error)

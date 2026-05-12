@@ -33,18 +33,22 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signupSchema = void 0;
+exports.loginSchema = exports.confirmEmailSchema = exports.signupSchema = void 0;
 const z = __importStar(require("zod"));
 exports.signupSchema = {
     body: z.object({
-        name: z.string().min(3).max(4),
+        name: z.string().min(3).max(15),
         email: z.email(),
         password: z.string().regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/),
-        repeatPassword: z.string(),
-        age: z.number().optional()
+        confirmPassword: z.string().optional(),
+        age: z.number().optional(),
+        gender: z.union([
+            z.literal(0),
+            z.literal(1)
+        ])
     })
         .refine((value) => {
-        if (value.password !== value.repeatPassword) {
+        if (value.password !== value.confirmPassword) {
             return false;
         }
         else {
@@ -52,7 +56,19 @@ exports.signupSchema = {
         }
     }, {
         error: "password not match",
-        path: ["password", "repeatPassword"]
+        path: ["password", "confirmPassword"]
+    })
+};
+exports.confirmEmailSchema = {
+    body: z.object({
+        email: z.email(),
+        otp: z.number().min(100000).max(999999),
+    })
+};
+exports.loginSchema = {
+    body: z.object({
+        email: z.email(),
+        password: z.string()
     })
 };
 //# sourceMappingURL=user.validation.js.map

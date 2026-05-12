@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const config_1 = require("../../config");
-const sendEmail = async ({ to, subject, html }) => {
+const sendEmail = async ({ to, otp, subject, html }) => {
     const transporter = nodemailer_1.default.createTransport({
         secure: false, // use STARTTLS
         service: "gmail",

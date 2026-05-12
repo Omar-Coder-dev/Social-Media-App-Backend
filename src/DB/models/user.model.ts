@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
-import { GenderEnum, IUser, ProviderEnum } from "../../modules/users/user.type";
+import { GenderEnum, IUser, ProviderEnum, RoleEnum } from "../../modules/users/user.type";
+import mongoose from "mongoose";
 
 const userSchema = new Schema<IUser>(
   {
@@ -48,6 +49,11 @@ const userSchema = new Schema<IUser>(
       default: ProviderEnum.system,
       enum: [ProviderEnum.system, ProviderEnum.google],
     },
+    role: {
+    type: Number,
+    enum: [RoleEnum.user, RoleEnum.admin],
+    default: RoleEnum.user
+},
   },
   {
     timestamps: true,
@@ -64,6 +70,23 @@ const userSchema = new Schema<IUser>(
     }
   }
 );
+
+userSchema.pre(/^find/, function (this: mongoose.Query<any, any>) {
+  this.where({ isDeleted: false });
+});
+
+userSchema.pre("findOneAndDelete", async function (this: mongoose.Query<any, any>) {
+  const user = await this.model.findOne(this.getQuery());
+  if (user) {
+    try {
+      await mongoose.model("Post").deleteMany({ userId: user._id });
+      await mongoose.model("Comment").deleteMany({ userId: user._id });
+    } catch (err) {
+      console.error("Cascade delete failed:", err);
+    }
+  }
+});
+
 
 const userModel = model<IUser>("User", userSchema);
 

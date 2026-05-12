@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 import { EMAIL_PASSWORD, EMAIL_USER } from '../../config'
 
-export const sendEmail = async ({ to, subject, html }: { to: string, subject: string, html: string }) => {
+export const sendEmail = async ({ to, otp, subject, html }: { to: string, otp: string, subject: string, html: string }) => {
     const transporter = nodemailer.createTransport({
         secure: false, // use STARTTLS
         service: "gmail",
