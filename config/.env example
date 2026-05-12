@@ -1,0 +1,24 @@
+PORT = 3000
+ENV = dev
+
+MONGODB_URI = "Your URI "
+
+# Encryption
+
+IV_LENGTH = 16
+ENCRYPTION_SECRET_KEY = "Your Encryption Key"
+
+# Hashing
+SALT = 8
+
+# Email
+
+EMAIL_USER="Your Email"
+EMAIL_PASSWORD="The EMAIL_PASSWORD"
+HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+
+
+# JWT
+ACCESS_TOKEN_SIGNATURE = "Your Access ACCESS_TOKEN_SIGNATURE"
+REFRESH_TOKEN_SIGNATURE = "Your REFRESH_TOKEN_SIGNATURE"
