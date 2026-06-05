@@ -7,6 +7,8 @@ import userRouter, {routes as userRoutes } from "./modules/users/user.controller
 import {DBconnection, testRedisConnection} from "./DB/connection";
 import { IAppError } from "./utils/types/error";
 import storyRouter from "./modules/story/story.controller";
+import { GraphQLBoolean, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import { createHandler } from "graphql-http/lib/use/express";
 export const app: Express = express();
 
 export const bootstrap = async () => {
@@ -18,6 +20,59 @@ export const bootstrap = async () => {
   await DBconnection();
   await testRedisConnection();
 
+const schema = new GraphQLSchema({
+  // --- QUERIES ---
+  query: new GraphQLObjectType({
+    name: "RootQueryType",
+    fields: {
+      sayHi: {
+        type: GraphQLString,
+        resolve() {
+          return "Hello From GraphQL API";
+        },
+      },
+
+      // Math with Boolean logic & Arguments entering data
+      calculatePrice: {
+        type: GraphQLInt,
+        args: {
+          // GraphQLNonNull makes it required in Postman
+          basePrice: { type: new GraphQLNonNull(GraphQLInt) }, 
+          applyDiscount: { type: GraphQLBoolean }
+        },
+        // We skip the first parameter (_) and grab the arguments directly
+        resolve(_, { basePrice, applyDiscount }) {
+          let price = basePrice;
+          
+          if (applyDiscount === true) {
+            price = price - 200; // Math
+          }
+          
+          return price;
+        }
+      }
+    }
+  }),
+
+  // --- MUTATIONS ---
+  mutation: new GraphQLObjectType({
+    name: "RootMutationType",
+    fields: {
+      registerUser: {
+        type: GraphQLString,
+        args: {
+          username: { type: new GraphQLNonNull(GraphQLString) }, // Required!
+          age: { type: GraphQLInt }
+        },
+        resolve(_, { username, age }) {
+          return `User ${username} (Age: ${age || 'Unknown'}) entered successfully!`;
+        }
+      }
+    }
+  })
+});
+
+  app.use("/graphql", createHandler({ schema }));
 
   app.all(/.*/, (req, res, next) => {
     next(new NotFoundException());

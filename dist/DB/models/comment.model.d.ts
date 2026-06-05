@@ -1,24 +1,24 @@
 import mongoose from "mongoose";
 declare const commentModel: mongoose.Model<{
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps, {}, {}, {
     id: string;
 }, mongoose.Document<unknown, {}, {
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps, {
     id: string;
 }, {
     timestamps: true;
 }> & Omit<{
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps & {
     _id: mongoose.Types.ObjectId;
@@ -29,23 +29,23 @@ declare const commentModel: mongoose.Model<{
 }, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any, any>, {}, {}, {}, {}, {
     timestamps: true;
 }, {
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps, mongoose.Document<unknown, {}, {
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps, {
     id: string;
 }, Omit<mongoose.DefaultSchemaOptions, "timestamps"> & {
     timestamps: true;
 }> & Omit<{
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
 } & mongoose.DefaultTimestampProps & {
     _id: mongoose.Types.ObjectId;
@@ -54,9 +54,9 @@ declare const commentModel: mongoose.Model<{
 }, "id"> & {
     id: string;
 }, unknown, {
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -65,9 +65,9 @@ declare const commentModel: mongoose.Model<{
 } & {
     __v: number;
 }>, {
-    userId: mongoose.Types.ObjectId;
-    text: string;
     isDeleted: boolean;
+    text: string;
+    userId: mongoose.Types.ObjectId;
     postId: mongoose.Types.ObjectId;
     createdAt: NativeDate;
     updatedAt: NativeDate;

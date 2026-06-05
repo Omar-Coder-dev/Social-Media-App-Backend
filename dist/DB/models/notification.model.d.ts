@@ -1,17 +1,17 @@
 import { Schema, Types } from "mongoose";
 declare const notificationModel: import("mongoose").Model<{
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
 } & import("mongoose").DefaultTimestampProps, {}, {}, {
     id: string;
 }, import("mongoose").Document<unknown, {}, {
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
@@ -20,9 +20,9 @@ declare const notificationModel: import("mongoose").Model<{
 }, {
     timestamps: true;
 }> & Omit<{
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
@@ -35,16 +35,16 @@ declare const notificationModel: import("mongoose").Model<{
 }, Schema<any, import("mongoose").Model<any, any, any, any, any, any, any>, {}, {}, {}, {}, {
     timestamps: true;
 }, {
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
 } & import("mongoose").DefaultTimestampProps, import("mongoose").Document<unknown, {}, {
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
@@ -53,9 +53,9 @@ declare const notificationModel: import("mongoose").Model<{
 }, Omit<import("mongoose").DefaultSchemaOptions, "timestamps"> & {
     timestamps: true;
 }> & Omit<{
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
@@ -66,9 +66,9 @@ declare const notificationModel: import("mongoose").Model<{
 }, "id"> & {
     id: string;
 }, unknown, {
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;
@@ -79,9 +79,9 @@ declare const notificationModel: import("mongoose").Model<{
 } & {
     __v: number;
 }>, {
-    body: string;
     type: "admin_blast" | "post_react" | "post_comment";
     title: string;
+    body: string;
     isRead: boolean;
     recipientId?: Types.ObjectId | null;
     senderId?: Types.ObjectId | null;

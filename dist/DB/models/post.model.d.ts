@@ -8,8 +8,8 @@ export declare enum ReactionEnum {
     angry = "angry"
 }
 declare const postModel: mongoose.Model<{
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -24,8 +24,8 @@ declare const postModel: mongoose.Model<{
 } & mongoose.DefaultTimestampProps, {}, {}, {
     id: string;
 }, mongoose.Document<unknown, {}, {
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -42,8 +42,8 @@ declare const postModel: mongoose.Model<{
 }, {
     timestamps: true;
 }> & Omit<{
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -64,8 +64,8 @@ declare const postModel: mongoose.Model<{
 }, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any, any>, {}, {}, {}, {}, {
     timestamps: true;
 }, {
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -78,8 +78,8 @@ declare const postModel: mongoose.Model<{
         userId?: Types.ObjectId | null;
     }>;
 } & mongoose.DefaultTimestampProps, mongoose.Document<unknown, {}, {
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -96,8 +96,8 @@ declare const postModel: mongoose.Model<{
 }, Omit<mongoose.DefaultSchemaOptions, "timestamps"> & {
     timestamps: true;
 }> & Omit<{
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -116,8 +116,8 @@ declare const postModel: mongoose.Model<{
 }, "id"> & {
     id: string;
 }, unknown, {
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;
@@ -136,8 +136,8 @@ declare const postModel: mongoose.Model<{
 } & {
     __v: number;
 }>, {
-    userId: Types.ObjectId;
     isDeleted: boolean;
+    userId: Types.ObjectId;
     content: string;
     reactions: Types.DocumentArray<{
         type: ReactionEnum;

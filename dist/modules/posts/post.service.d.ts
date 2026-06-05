@@ -6,9 +6,9 @@ export declare const postService: {
     }) => Promise<{
         data: {
             post: import("mongoose").Document<unknown, {}, {
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -24,9 +24,9 @@ export declare const postService: {
             }, {
                 timestamps: true;
             }> & Omit<{
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -49,9 +49,9 @@ export declare const postService: {
     getFeed: () => Promise<{
         data: {
             posts: (import("mongoose").Document<unknown, {}, {
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -67,9 +67,9 @@ export declare const postService: {
             }, {
                 timestamps: true;
             }> & Omit<{
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -96,9 +96,9 @@ export declare const postService: {
     }) => Promise<{
         data: {
             post: (import("mongoose").Document<unknown, {}, {
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -114,9 +114,9 @@ export declare const postService: {
             }, {
                 timestamps: true;
             }> & Omit<{
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -139,9 +139,9 @@ export declare const postService: {
     hardDelete: (postId: any) => Promise<{
         data: {
             post: (import("mongoose").Document<unknown, {}, {
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -157,9 +157,9 @@ export declare const postService: {
             }, {
                 timestamps: true;
             }> & Omit<{
-                content: string;
-                userId: Types.ObjectId;
                 isDeleted: boolean;
+                userId: Types.ObjectId;
+                content: string;
                 reactions: Types.DocumentArray<{
                     type: import("../../DB/models/post.model").ReactionEnum;
                     userId?: Types.ObjectId | null;
@@ -186,19 +186,19 @@ export declare const postService: {
     }) => Promise<{
         data: {
             comment: import("mongoose").Document<unknown, {}, {
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps, {
                 id: string;
             }, {
                 timestamps: true;
             }> & Omit<{
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps & {
                 _id: Types.ObjectId;
             } & {
@@ -211,19 +211,19 @@ export declare const postService: {
     getPostComments: (postId: any) => Promise<{
         data: {
             comments: (import("mongoose").Document<unknown, {}, {
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps, {
                 id: string;
             }, {
                 timestamps: true;
             }> & Omit<{
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps & {
                 _id: Types.ObjectId;
             } & {
@@ -236,19 +236,19 @@ export declare const postService: {
     softDeleteComment: (commentId: any, userId: any) => Promise<{
         data: {
             comment: (import("mongoose").Document<unknown, {}, {
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps, {
                 id: string;
             }, {
                 timestamps: true;
             }> & Omit<{
+                isDeleted: boolean;
+                text: string;
                 userId: Types.ObjectId;
                 postId: Types.ObjectId;
-                text: string;
-                isDeleted: boolean;
             } & import("mongoose").DefaultTimestampProps & {
                 _id: Types.ObjectId;
             } & {

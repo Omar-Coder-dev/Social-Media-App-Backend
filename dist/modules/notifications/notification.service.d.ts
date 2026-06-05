@@ -6,9 +6,9 @@ export declare const notificationService: {
     }) => Promise<{
         data: {
             notification: import("mongoose").Document<unknown, {}, {
+                type: "admin_blast" | "post_react" | "post_comment";
                 title: string;
                 body: string;
-                type: "admin_blast" | "post_react" | "post_comment";
                 isRead: boolean;
                 recipientId?: import("mongoose").Types.ObjectId | null;
                 senderId?: import("mongoose").Types.ObjectId | null;
@@ -17,9 +17,9 @@ export declare const notificationService: {
             }, {
                 timestamps: true;
             }> & Omit<{
+                type: "admin_blast" | "post_react" | "post_comment";
                 title: string;
                 body: string;
-                type: "admin_blast" | "post_react" | "post_comment";
                 isRead: boolean;
                 recipientId?: import("mongoose").Types.ObjectId | null;
                 senderId?: import("mongoose").Types.ObjectId | null;
@@ -35,9 +35,9 @@ export declare const notificationService: {
     getNotifications: (userId: any) => Promise<{
         data: {
             notifications: (import("mongoose").Document<unknown, {}, {
+                type: "admin_blast" | "post_react" | "post_comment";
                 title: string;
                 body: string;
-                type: "admin_blast" | "post_react" | "post_comment";
                 isRead: boolean;
                 recipientId?: import("mongoose").Types.ObjectId | null;
                 senderId?: import("mongoose").Types.ObjectId | null;
@@ -46,9 +46,9 @@ export declare const notificationService: {
             }, {
                 timestamps: true;
             }> & Omit<{
+                type: "admin_blast" | "post_react" | "post_comment";
                 title: string;
                 body: string;
-                type: "admin_blast" | "post_react" | "post_comment";
                 isRead: boolean;
                 recipientId?: import("mongoose").Types.ObjectId | null;
                 senderId?: import("mongoose").Types.ObjectId | null;

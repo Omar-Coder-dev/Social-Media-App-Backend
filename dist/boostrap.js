@@ -45,6 +45,8 @@ const error_handle_1 = require("./utils/errorHandle/error.handle");
 const user_controller_1 = __importStar(require("./modules/users/user.controller"));
 const connection_1 = require("./DB/connection");
 const story_controller_1 = __importDefault(require("./modules/story/story.controller"));
+const graphql_1 = require("graphql");
+const express_2 = require("graphql-http/lib/use/express");
 exports.app = (0, express_1.default)();
 const bootstrap = async () => {
     exports.app.use(express_1.default.json());
@@ -54,6 +56,54 @@ const bootstrap = async () => {
     exports.app.use("/stories", story_controller_1.default);
     await (0, connection_1.DBconnection)();
     await (0, connection_1.testRedisConnection)();
+    const schema = new graphql_1.GraphQLSchema({
+        // --- QUERIES ---
+        query: new graphql_1.GraphQLObjectType({
+            name: "RootQueryType",
+            fields: {
+                sayHi: {
+                    type: graphql_1.GraphQLString,
+                    resolve() {
+                        return "Hello From GraphQL API";
+                    },
+                },
+                // Math with Boolean logic & Arguments entering data
+                calculatePrice: {
+                    type: graphql_1.GraphQLInt,
+                    args: {
+                        // GraphQLNonNull makes it required in Postman
+                        basePrice: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt) },
+                        applyDiscount: { type: graphql_1.GraphQLBoolean }
+                    },
+                    // We skip the first parameter (_) and grab the arguments directly
+                    resolve(_, { basePrice, applyDiscount }) {
+                        let price = basePrice;
+                        if (applyDiscount === true) {
+                            price = price - 200; // Math
+                        }
+                        return price;
+                    }
+                }
+            }
+        }),
+        // --- MUTATIONS ---
+        mutation: new graphql_1.GraphQLObjectType({
+            name: "RootMutationType",
+            fields: {
+                registerUser: {
+                    type: graphql_1.GraphQLString,
+                    args: {
+                        username: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString) }, // Required!
+                        age: { type: graphql_1.GraphQLInt }
+                    },
+                    resolve(_, { username, age }) {
+                        return `User ${username} (Age: ${age || 'Unknown'}) entered successfully!`;
+                    }
+                }
+            }
+        })
+    });
+    exports.app.use("/graphql", (0, express_2.createHandler)({ schema }));
     exports.app.all(/.*/, (req, res, next) => {
         next(new error_handle_1.NotFoundException());
     });
