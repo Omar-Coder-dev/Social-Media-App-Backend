@@ -14,5 +14,6 @@ A scalable backend architecture for social media interactions.
 - Post interactions (reactions, comments)
 - Live notification system architecture
 
-## Documentation
-- API testing and endpoints are documented in the [Postman Collection] attached to this repository.
+## API Documentation
+You can test the API endpoints using the [Postman Collection](docs/your-file-name.json). 
+Download the file and import it directly into your Postman application.
