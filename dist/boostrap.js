@@ -45,19 +45,23 @@ const error_handle_1 = require("./utils/errorHandle/error.handle");
 const user_controller_1 = __importStar(require("./modules/users/user.controller"));
 const connection_1 = require("./DB/connection");
 const story_controller_1 = __importDefault(require("./modules/story/story.controller"));
+const chat_controller_1 = __importDefault(require("./modules/chat/chat.controller"));
 const graphql_1 = require("graphql");
 const express_2 = require("graphql-http/lib/use/express");
+const socket_gateway_1 = require("./modules/socket/socket.gateway");
+const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
 const bootstrap = async () => {
+    exports.app.use((0, cors_1.default)({ origin: "*" }));
     exports.app.use(express_1.default.json());
     exports.app.use(user_controller_1.routes.base, user_controller_1.default);
     exports.app.use(post_controller_1.routes.base, post_controller_1.default);
     exports.app.use(notification_controller_1.routes.base, notification_controller_1.default);
+    exports.app.use("/chat", chat_controller_1.default);
     exports.app.use("/stories", story_controller_1.default);
     await (0, connection_1.DBconnection)();
     await (0, connection_1.testRedisConnection)();
     const schema = new graphql_1.GraphQLSchema({
-        // --- QUERIES ---
         query: new graphql_1.GraphQLObjectType({
             name: "RootQueryType",
             fields: {
@@ -67,24 +71,21 @@ const bootstrap = async () => {
                         return "Hello From GraphQL API";
                     },
                 },
-                // Math with Boolean logic & Arguments entering data
                 calculatePrice: {
                     type: graphql_1.GraphQLInt,
                     args: {
-                        // GraphQLNonNull makes it required in Postman
                         basePrice: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt) },
-                        applyDiscount: { type: graphql_1.GraphQLBoolean }
+                        applyDiscount: { type: graphql_1.GraphQLBoolean },
                     },
-                    // We skip the first parameter (_) and grab the arguments directly
                     resolve(_, { basePrice, applyDiscount }) {
                         let price = basePrice;
                         if (applyDiscount === true) {
                             price = price - 200; // Math
                         }
                         return price;
-                    }
-                }
-            }
+                    },
+                },
+            },
         }),
         // --- MUTATIONS ---
         mutation: new graphql_1.GraphQLObjectType({
@@ -94,14 +95,14 @@ const bootstrap = async () => {
                     type: graphql_1.GraphQLString,
                     args: {
                         username: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString) }, // Required!
-                        age: { type: graphql_1.GraphQLInt }
+                        age: { type: graphql_1.GraphQLInt },
                     },
                     resolve(_, { username, age }) {
-                        return `User ${username} (Age: ${age || 'Unknown'}) entered successfully!`;
-                    }
-                }
-            }
-        })
+                        return `User ${username} (Age: ${age || "Unknown"}) entered successfully!`;
+                    },
+                },
+            },
+        }),
     });
     exports.app.use("/graphql", (0, express_2.createHandler)({ schema }));
     exports.app.all(/.*/, (req, res, next) => {
@@ -114,9 +115,10 @@ const bootstrap = async () => {
         }
         res.status(err.statusCode || 500).json(data);
     });
-    exports.app.listen(config_1.PORT, () => {
+    const httpServer = exports.app.listen(config_1.PORT, () => {
         console.log(`Server is running on port ${config_1.PORT}`);
     });
+    (0, socket_gateway_1.initializeIo)(httpServer);
 };
 exports.bootstrap = bootstrap;
 //# sourceMappingURL=boostrap.js.map

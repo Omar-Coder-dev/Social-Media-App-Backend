@@ -54,6 +54,14 @@ const userSchema = new Schema<IUser>(
     enum: [RoleEnum.user, RoleEnum.admin],
     default: RoleEnum.user
 },
+friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    friendRequests: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
   },
   {
     timestamps: true,
@@ -88,6 +96,6 @@ userSchema.pre("findOneAndDelete", async function (this: mongoose.Query<any, any
 });
 
 
-const userModel = model<IUser>("User", userSchema);
+export const userModel = model<IUser>("User", userSchema);
 
 export default userModel;

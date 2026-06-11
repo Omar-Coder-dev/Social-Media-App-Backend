@@ -154,6 +154,38 @@ class userServices {
             }
         };
     }
+    async sendFriendRequest(senderId, recipientId) {
+        if (senderId === recipientId) {
+            throw new error_handle_1.BadRequestException("You cannot send a friend request to yourself");
+        }
+        // Using your userRepo to find the model or directly query Mongoose
+        const userModel = this.userRepo.model || require("../../DB/models/user.model").userModel;
+        const recipient = await userModel.findByIdAndUpdate(recipientId, { $addToSet: { friendRequests: senderId } }, { new: true });
+        if (!recipient)
+            throw new error_handle_1.NotFoundException("Recipient user not found");
+        return { message: "Friend request sent successfully" };
+    }
+    async acceptFriendRequest(receiverId, senderId) {
+        const userModel = this.userRepo.model || require("../../DB/models/user.model").userModel;
+        // 1. Update the receiver (User B): pull request, add friend
+        const updatedReceiver = await userModel.findByIdAndUpdate(receiverId, {
+            $pull: { friendRequests: senderId },
+            $addToSet: { friends: senderId }
+        }, { new: true });
+        if (!updatedReceiver)
+            throw new error_handle_1.NotFoundException("User not found");
+        // 2. Update the sender (User A): add receiver to their friends array too!
+        // We add an explicit await here to guarantee MongoDB registers both updates.
+        await userModel.findByIdAndUpdate(senderId, { $addToSet: { friends: receiverId } }, { new: true });
+        return { message: "Friend request accepted successfully" };
+    }
+    async rejectFriendRequest(receiverId, senderId) {
+        const userModel = this.userRepo.model || require("../../DB/models/user.model").userModel;
+        const updatedReceiver = await userModel.findByIdAndUpdate(receiverId, { $pull: { friendRequests: senderId } }, { new: true });
+        if (!updatedReceiver)
+            throw new error_handle_1.NotFoundException("User not found");
+        return { message: "Friend request rejected successfully" };
+    }
 }
 exports.userService = new userServices();
 //# sourceMappingURL=user.service.js.map

@@ -1,4 +1,6 @@
 import { bootstrap } from "./boostrap";
 
-bootstrap()
+bootstrap().catch((error) => {
+  console.error("Error during bootstrap:", error);
+});
 

@@ -32,6 +32,15 @@ declare class userServices {
             refreshToken: string;
         };
     }>;
+    sendFriendRequest(senderId: string, recipientId: string): Promise<{
+        message: string;
+    }>;
+    acceptFriendRequest(receiverId: string, senderId: string): Promise<{
+        message: string;
+    }>;
+    rejectFriendRequest(receiverId: string, senderId: string): Promise<{
+        message: string;
+    }>;
 }
 export declare const userService: userServices;
 export {};

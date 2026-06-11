@@ -4,4 +4,9 @@ import { IUser } from "../../modules/users/user.type";
 export interface IRequest extends Request {
     user?: HydratedDocument<IUser>;
 }
+declare module "socket.io" {
+    interface Socket {
+        user?: HydratedDocument<IUser>;
+    }
+}
 //# sourceMappingURL=req.types.d.ts.map

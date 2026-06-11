@@ -24,6 +24,8 @@ export interface IUser {
     isDeleted: boolean;
     isProvier: ProviderEnum;
     role: RoleEnum;
+    friends?: any[];
+    friendRequests?: any[];
 }
 export interface signupDTO {
     name: string;
@@ -42,4 +44,8 @@ export type loginDTO = {
     email: string;
     password: string;
 };
+export interface FriendRequestDTO {
+    senderId: string;
+    recipientId: string;
+}
 //# sourceMappingURL=user.type.d.ts.map

@@ -28,6 +28,8 @@ export interface IUser {
     isDeleted: boolean
     isProvier: ProviderEnum
     role: RoleEnum
+    friends?: any[];
+    friendRequests?: any[];
 }
 
 
@@ -50,4 +52,9 @@ export type confirmEmailDTO = {
 export type loginDTO = {
     email: string
     password: string
+}
+
+export interface FriendRequestDTO {
+    senderId: string;
+    recipientId: string;
 }
